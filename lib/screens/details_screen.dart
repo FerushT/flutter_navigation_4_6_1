@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_navigation_4_6_1/models/class_product.dart';
 
 class DetailScreen extends StatelessWidget {
-  final String name;
-  final double price;
-  final String description;
+  final Product product;
 
-  const DetailScreen(
-      {super.key,
-      required this.name,
-      required this.price,
-      required this.description});
+  const DetailScreen({
+    super.key,
+    required this.product,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Details $name"),
+        title: Text("Details ${product.name}"),
       ),
       body: Center(
         child: Column(
           children: [
-            Text(name, style: TextStyle(fontSize: 24)),
+            Text(product.name, style: const TextStyle(fontSize: 24)),
             Text(
-              description,
-              style: TextStyle(fontSize: 15),
+              product.description,
+              style: const TextStyle(fontSize: 15),
             ),
-            Text("Preis: $price €"),
+            Text(
+                "Preis: ${product.price.toStringAsFixed(2).replaceAll(".", ",")} €"),
             OutlinedButton(
               onPressed: () {
                 Navigator.pop(context);
